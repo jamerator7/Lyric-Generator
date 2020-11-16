@@ -3,16 +3,16 @@ import lyricsgenius
 
 
 def main():
+    list = ["none", 0, "n"]
     artist1 = str(input("Who is your favorite musical artist? "))
-    artist = artist1
-    bruh = input("Do you want to know some of their songs? (y/n) ")
-    num = 0
+    list[0] = artist1
+    list[2] = input("Do you want to know some of their songs? (y/n) ")
     genius = lyricsgenius.Genius("0wYb-xsVfpkx1CtxOyk_-FfAMqAiIXhYLHg8blCZ3qvmrpJgOwV1ycvQSgM_1Kb4")
-    if bruh == "y":
-        print("How many", artist, "songs do you wanna know?")
-        num = int(input(""))
+    if list[2] == "y":
+        print("How many", list[0], "songs do you wanna know?")
+        list[1] = int(input(""))
     try:
-        artist = genius.search_artist(artist, max_songs=num, sort="popularity")
+        artist = genius.search_artist(list[0], max_songs=list[1], sort="popularity")
     except AttributeError:
         return print("ERROR No Artist Found")
     while True:
