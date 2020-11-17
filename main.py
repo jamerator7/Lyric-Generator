@@ -2,6 +2,31 @@
 import lyricsgenius
 
 
+def lyrics(artist, artist1, genius):
+    print(" ")
+    print("What", artist1, "song do you want to know the lyrics to? ")
+    title = str(input(""))
+    try:
+        song = genius.search_song(title, artist.name)
+        print(" ")
+        print(song.lyrics)
+        print(" ")
+    except AttributeError:
+        return print("No song found")
+    loop(artist, artist1, genius)
+
+
+def loop(artist, artist1, genius):
+    print("Done. Do you want to know a new artist or know more", artist1, "(y/n)")
+    decide = input("")
+    if decide == "y":
+        print(" ")
+        main()
+    else:
+        print(" ")
+        lyrics(artist, artist1, genius)
+
+
 def main():
     list = ["none", 0, "n"]
     artist1 = str(input("Who is your favorite musical artist? "))
@@ -15,27 +40,7 @@ def main():
         artist = genius.search_artist(list[0], max_songs=list[1], sort="popularity")
     except AttributeError:
         return print("ERROR No Artist Found")
-    while True:
-        print(" ")
-        print("What", artist1, "song do you want to know the lyrics to? ")
-        title = str(input(""))
-        try:
-            song = genius.search_song(title, artist.name)
-            print(" ")
-            print(song.lyrics)
-        except AttributeError:
-            print("No song found")
-        print(" ")
-        print(" ")
-        print("Done. Do you want to know a new artist or know more", artist1, "(y/n)")
-        decide = input("")
-        if decide == "y":
-            print(" ")
-            main()
-        elif decide == "n":
-            print(" ")
-        else:
-            print("Unknown command. Artist will remain.")
+    lyrics(artist, artist1, genius)
 
 
 if __name__ == '__main__':
