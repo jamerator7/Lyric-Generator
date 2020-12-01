@@ -28,16 +28,17 @@ def loop(artist, artist1, genius):
 
 
 def main():
-    list = ["none", 0, "n"]
+    song_finder = ["Artist Name", "Song Finder Amount", "Song Finder Confirmation"]
+    song_finder[1] = 0
     artist1 = str(input("Who is your favorite musical artist? "))
-    list[0] = artist1
-    list[2] = input("Do you want to know some of their songs? (y/n) ")
+    song_finder[0] = artist1
+    song_finder[2] = input("Do you want to know some of their songs? (y/n) ")
     genius = lyricsgenius.Genius("0wYb-xsVfpkx1CtxOyk_-FfAMqAiIXhYLHg8blCZ3qvmrpJgOwV1ycvQSgM_1Kb4")
-    if list[2] == "y":
-        print("How many", list[0], "songs do you wanna know?")
-        list[1] = int(input(""))
+    if song_finder[2] == "y":
+        print("How many", song_finder[0], "songs do you wanna know?")
+        song_finder[1] = int(input(""))
     try:
-        artist = genius.search_artist(list[0], max_songs=list[1], sort="popularity")
+        artist = genius.search_artist(song_finder[0], max_songs=song_finder[1], sort="popularity")
     except AttributeError:
         return print("ERROR No Artist Found")
     lyrics(artist, artist1, genius)
